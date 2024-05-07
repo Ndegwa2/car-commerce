@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAR HUB</title>
+    <style>
+        body, html{
+            margin:0;
+            padding:0;
+            height:100%;
+        }
+        .header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+        .logo{
+            width:100px;
+        }
+        .cart-icon{
+            font-size: 24px;
+            cursor: pointer;
+        }
+        h1 {
+            color:darkgoldenrod;
+            text-align: center;
+            font-size:larger;
+       }
+        p {
+            text-align: left;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-display:inherit;
+            color: black;
+        }
+        h2 {
+            text-align: center;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-style: oblique;
+        }
+        .about {
+           
+            border: 10px;
+            margin: 5px;
+            float: left;
+        }
+        img {
+            margin: 10px;
+            border: 5px;
+            width: 80%;
+            height: auto;
+            background-color:black;
+        }
+        .card {
+            display: inline-block;
+            width: 300px;
+            margin: 5px;
+            border: 1px solid;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            gap:20px;
+            height: auto;
+            justify-content: space-between;
+            display: inline-block;
+
+        }
+        .card-content {
+            padding: 20px;
+            display: inline-block;
+        }
+        .container {
+  flex:1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  width: 60%;
+}
+
+
+
+        body{
+            background-color:rgb(143, 104, 54);
+            width:50%;
+            padding: 5px;
+            margin:1px;
+            display:flex;
+            flex-direction: column;
+            height:100vh;
+            position: relative;
+            overflow:auto;
+        }
+  .buy-button button{
+    background-color: aqua;
+    border: 1px;
+    color: black;
+    padding: 10px 20px;
+    margin:5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.container-wrapper{
+    display:flex;
+}
+
+.buy-button button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+  body::before{
+    content: '';
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+
+    background-size: 400% 400%;
+    animation:backgroundAnimation 15s ease infinite;
+
+  }
+  </style>
+       <script>
+        const logos = [
+            "https://img.freepik.com/free-vector/car-logo_126523-482.jpg?t=st=1715073714~exp=1715077314~hmac=fa5d390b5fbf67d2f36bf7e8d25b902c4dd0733d357006abfec2945f4f64b158&w=740",
+            "https://img.freepik.com/free-vector/retro-car-logo-vector-icon_126523-240.jpg?t=st=1715074619~exp=1715078219~hmac=4e7666a93a0ea8a85b5b4e6de74abd5700448b35caa06f19b783ff1ee0935f63&w=740",
+            "https://img.freepik.com/free-vector/red-sport-car-logo-vector-icon-negative-space-style_126523-730.jpg?t=st=1715074640~exp=1715078240~hmac=ead844d86da0cf43f841b25cdf834fd74c75dd1aeae31878880dafb3e4a11d98&w=740",
+            "https://img.freepik.com/free-vector/gradient-auto-parts-logo-design_23-2149460686.jpg?t=st=1715074755~exp=1715078355~hmac=f5ed91d225df311033d2c2e1e887ef1389ec443a660c2c477addd9d48718f028&w=740",
+            "https://img.freepik.com/free-vector/car-logo_126523-482.jpg?t=st=1715073714~exp=1715077314~hmac=fa5d390b5fbf67d2f36bf7e8d25b902c4dd0733d357006abfec2945f4f64b158&w=740",
+            "https://img.freepik.com/free-vector/car-logo_126523-482.jpg?t=st=1715073714~exp=1715077314~hmac=fa5d390b5fbf67d2f36bf7e8d25b902c4dd0733d357006abfec2945f4f64b158&w=740",
+        ];
+
+        function createLogo(logoUrl) {
+            const logo = document.createElement("img");
+            logo.src = logoUrl;
+            logo.alt = "Logo";
+            logo.style.width = "50px"; // Adjust size as needed
+            return logo;
+        }
+
+        function createBuyButton(price, itemName) {
+            const button = document.createElement("button");
+            button.textContent = `Buy [$${price}]`;
+            button.style.marginTop = "10px";
+
+            button.addEventListener('click', function() {
+                promptForCardDetails(itemName);
+            });
+            return button;
+        }
+
+        function promptForCardDetails(itemName) {
+    const cardNumber = prompt(`Enter your card number for ${itemName}:`);
+    const expirationDate = prompt(`Enter your card expiration date (MM/YY) for ${itemName}:`);
+    const cvv = prompt(`Enter your CVV for ${itemName}:`);
+
+    if (cardNumber && expirationDate && cvv) {
+        console.log(`User entered card details for ${itemName}: ${cardNumber}, ${expirationDate}, ${cvv}`);
+        alert(`Thank you for your purchase of ${itemName}!`);
+    } else {
+        console.log('User canceled the purchase or did not enter all details.');
+    }
+}
+
+        const items = [
+            { name: "Service kit", price: 45 },
+            { name: "Coil-overs", price: 100 },
+            { name: "Rims", price: 250 },
+            { name: "V6 Engine", price: 240 },
+            { name: "In-line-6 Engine", price: 100 },
+            { name: "BMW-5-Series tail-lights", price: 5000 },
+            { name: "Halogen Bulbs", price: 80 },
+        ];
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const cards = document.querySelectorAll(".card");
+            cards.forEach((card, index) => {
+                const logo = createLogo(logos[index]);
+                const buyButton = createBuyButton(items[index].price, items[index].name);
+                card.appendChild(logo);
+                card.appendChild(buyButton);
+            });
+        });
+    </script>
+<body>
+    <div class="header">
+        <img class="logo" src="https://img.freepik.com/free-vector/red-sport-car-logo-vector-icon-negative-space-style_126523-730.jpg?t=st=1715074640~exp=1715078240~hmac=ead844d86da0cf43f841b25cdf834fd74c75dd1aeae31878880dafb3e4a11d98&w=740"
+        alt="logo">
+        <div class="cart-icon">&#128722;</div>
+    </div>
+    <h1>CAR HUB AUTO SPARES</h1>
+    <h2>Drive. Style. Thrive.</h2>
+    
+
+    
+    <div class="container">
+        <div class="card">
+            <img src="https://img.freepik.com/free-photo/different-car-accessories-arrangement_23-2149030411.jpg?t=st=1714999584~exp=1715003184~hmac=0853c46e1933850f71630e129af8d69ef44fe9492c643c47b3cfd53c1860c84a&w=740"
+                alt="Service kit">
+            <div class="card-content">
+                <h3>Service kit</h3>
+                <p>Price[$200]</p>
+            </div>
+            <div class="buy-button">
+                <button class="buy-button" id="buy-button-1">Buy</button>
+            </div>
+            
+         
+        </div>
+        <div class="card">
+            <img src="https://img.freepik.com/premium-photo/vehicle-dampers-against-white-backdrop_1002329-9387.jpg?w=740"
+                alt="coil-overs">
+            <div class="card-content">
+                <h3>Coil-overs</h3>
+                <p> Price[$45]</p>
+            </div>
+            <div class="buy-button">
+                <button class="buy-button" id="buy-button-2">Buy</button>
+            </div>
+            
+        </div>
+        <div class="card">
+            <img src="https://img.freepik.com/free-photo/close-up-metallic-car-wheel_23-2151113194.jpg?t=st=1715004473~exp=1715008073~hmac=3e87972d369a020f1439ff5fb97fd22e2b4f7ee409fa0d35d9412c63f91b3ddb&w=826"
+                alt="rims">
+            <div class="card-content">
+                <h3>Rims</h3>
+                <p> Price[$100]</p>
+            </div>
+            <div class="buy-button">
+                <button class="buy-button" id="buy-button-3">Buy</button>
+            </div>
+            
+        </div>
+        <div class="card">
+            <img src="https://img.freepik.com/premium-photo/innovative-motor-redefinitions-five-perspectives-isolated-transparent-background_1002329-6333.jpg?w=740"
+            alt="V6 Engine">
+            <div class="card-content">
+                <h3>V6 Engine</h3>
+                <p> Price[$250]</p>
+            </div>
+            <div class="buy-button">
+                <button class="buy-button" id="buy-button-4">Buy</button>
+            </div>
+            
+        </div>
+        <div class="card">
+            <img src="https://img.freepik.com/premium-photo/engine-car-white-background_1115439-14002.jpg?w=740"
+            alt="Inline-6 engine">
+            <div class="card-content">
+                <h3>In-line-6 Egine</h3>
+                <p> Price[$240]</p>
+            </div>
+            <div class="buy-button">
+                <button class="buy-button" id="buy-button-5">Buy</button>
+            </div>
+            
+        </div>
+        <div class="card">
+            <img src="https://img.freepik.com/free-photo/rear-light-new-black-car_23-2147962984.jpg?t=st=1715003562~exp=1715007162~hmac=e889bca217fc6ceeb64a6a1891bc34d059751bed7cf7632cc6de544fd01ad5ca&w=740"
+            alt="BMW 5 series tail-lights">
+            <div class="card-content">
+                <h3>BMW-5-Series tail-lights</h3>
+                <p>Price[$100]</p>
+            </div>
+            <div class="buy-button">
+                <button class="buy-button" id="buy-button-6">Buy</button>
+            </div>
+            
+        </div>
+        <div class="card">
+            <img src="https://img.freepik.com/free-photo/car-brakes-system_1232-1986.jpg?t=st=1715072095~exp=1715075695~hmac=30f76a47ec598e668e794fe82575ab5e8e05d815af7eb3f7e6ae17b59fe5f342&w=740"
+            alt="brake rotar and disc">
+            <div class="card-content">
+                <h3>Brake Rotor and Disc</h3>
+                <p> Price [$5000]</p>
+            </div>
+            <div class="buy-button">
+                <button class="buy-button" id="buy-button-7">Buy</button>
+            </div>
+            
+        </div>
+        <div class="card">
+            <img src="https://img.freepik.com/free-photo/different-car-accessories-assortment_23-2149030427.jpg?t=st=1715072466~exp=1715076066~hmac=1bf5230adfe32d4b553cc047cdf0662590d472ff7de0941d41b68b93e74fef43&w=360"
+            alt="Halogen Bulbs">
+            <div class="card-content">
+                <h3>Halogen BUlbs</h3>
+                <p>Price[$80]</p>
+            </div>
+            <div class="buy-button">
+                <button class="buy-button" id="buy-button-8">Buy</button>
+            </div>
+            
+        </div>
+    
+    </div>
+    </div>
+   
+</div>
+
+    <div class="about">
+        <h2>About us</h2>
+        <p>We are a world-class auto spares import company dealing with genuine parts for all kinds of vehicles.
+            Our skilled team ensures premium services and customer satisfaction is our top priority.
+            We pride ourselves in having won various awards and recognition both locally and at the international level.
+            Shop with us or visit our offices to find out more!</p>
+    </div>
+    <div class="services">
+        <h2>Our Services</h2>
+        <ul>
+            <li>Detailing</li>
+            <li>Car Wash</li>
+            <li>Spare Parts</li>
+            <li>Car Servicing</li>
+        </ul>
+    </div>
+ 
+
+</body>
+</html>
+
